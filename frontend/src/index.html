@@ -23,7 +23,12 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript">
       var app = angular.module("FruitManagement", []);
+      var console = angular.module('logExample', []);
 
+      console..controller('LogController', ['$scope', '$log', function($scope, $log) {
+        $scope.$log = $log;
+        $scope.message = 'Hello World!';
+      }]);
       //Controller Part
       app.controller("FruitManagementController", function ($scope, $http) {
 
@@ -50,12 +55,14 @@
             url = '/backend/api/fruits';
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
+            console.log(response.statusText);
           } else {
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
             url = '/backend/api/fruits/' + $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
+            console.log(response.statusText);
           }
 
           $http({
@@ -74,6 +81,7 @@
             method: 'DELETE',
             url: '/backend/api/fruits/' + fruit.id
           }).then(_success, _error);
+          console.log(response.statusText);
         };
 
         //In case of edit fruits, populate form with fruit data
@@ -81,6 +89,7 @@
           $scope.form.name = fruit.name;
           $scope.form.stock = parseInt(fruit.stock);
           $scope.form.id = fruit.id;
+          console.log(response.statusText);
         };
 
           /* Private Methods */
@@ -91,6 +100,7 @@
             url: '/backend/api/fruits'
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
+            console.log(response.statusText);
           }, function errorCallback(response) {
             console.log(response.statusText);
           });
