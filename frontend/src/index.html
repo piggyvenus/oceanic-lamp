@@ -55,14 +55,14 @@
             url = '/backend/api/fruits';
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
-            console.log(response.statusText);
+            $log.log("POST "+response.statusText);
           } else {
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
             url = '/backend/api/fruits/' + $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
-            console.log(response.statusText);
+            $log.log("PUT "+response.statusText);
           }
 
           $http({
@@ -81,7 +81,7 @@
             method: 'DELETE',
             url: '/backend/api/fruits/' + fruit.id
           }).then(_success, _error);
-          console.log(response.statusText);
+          $log.log("DELETE " + response.statusText);
         };
 
         //In case of edit fruits, populate form with fruit data
@@ -89,7 +89,7 @@
           $scope.form.name = fruit.name;
           $scope.form.stock = parseInt(fruit.stock);
           $scope.form.id = fruit.id;
-          console.log(response.statusText);
+          $log.log(response.statusText);
         };
 
           /* Private Methods */
@@ -100,9 +100,9 @@
             url: '/backend/api/fruits'
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
-            console.log(response.statusText);
+            $log.log("GET " + response.statusText);
           }, function errorCallback(response) {
-            console.log(response.statusText);
+            $log.log("GET " + response.statusText);
           });
         }
 
