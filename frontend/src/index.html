@@ -95,10 +95,17 @@
           /* Private Methods */
         //HTTP GET- get all fruits collection
         function _refreshPageData() {
-          $http({
+          /*$http({
             method: 'GET',
             url: '/backend/api/fruits'
           }).then(function successCallback(response) {
+            $scope.fruits = response.data;
+            $log.log("GET " + response.statusText);
+          }, function errorCallback(response) {
+            $log.log("GET " + response.statusText);
+          });*/
+
+          $http.get("http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits").then(function successCallback(response) {
             $scope.fruits = response.data;
             $log.log("GET " + response.statusText);
           }, function errorCallback(response) {
