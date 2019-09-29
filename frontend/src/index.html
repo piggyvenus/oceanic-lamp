@@ -25,9 +25,8 @@
       var app = angular.module("FruitManagement", []);
       var console = angular.module('logExample', []);
 
-      console..controller('LogController', ['$scope', '$log', function($scope, $log) {
+      console.controller('LogController', ['$scope', '$log', function($scope, $log) {
         $scope.$log = $log;
-        $scope.message = 'Hello World!';
       }]);
       //Controller Part
       app.controller("FruitManagementController", function ($scope, $http) {
@@ -95,22 +94,20 @@
           /* Private Methods */
         //HTTP GET- get all fruits collection
         function _refreshPageData() {
-          /*$http({
-            method: 'GET',
-            url: '/backend/api/fruits'
-          }).then(function successCallback(response) {
+        //  $http({
+        //    method: 'GET',
+        //    url: '/backend/api/fruits'
+        //  }).then(function successCallback(response) {
+        //    $scope.fruits = response.data;
+        //    $log.log("GET " + response.statusText);
+        //  }, function errorCallback(response) {
+        //    $log.log("GET " + response.statusText);
+        //  });
+          $http.get("http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits"
+            ).then(function successCallback(response) {
             $scope.fruits = response.data;
-            $log.log("GET " + response.statusText);
-          }, function errorCallback(response) {
-            $log.log("GET " + response.statusText);
-          });*/
-
-          $http.get("http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits").then(function successCallback(response) {
-            $scope.fruits = response.data;
-            $log.log("GET " + response.statusText);
-          }, function errorCallback(response) {
-            $log.log("GET " + response.statusText);
           });
+
         }
 
         function _success(response) {
