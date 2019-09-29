@@ -47,13 +47,13 @@
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
             method = "POST";
-            url = '/api/fruits';
+            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits';
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
           } else {
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
-            url = '/api/fruits/' + $scope.form.id;
+            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
           }
@@ -72,7 +72,7 @@
         $scope.remove = function (fruit) {
           $http({
             method: 'DELETE',
-            url: '/api/fruits/' + fruit.id
+            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
           }).then(_success, _error);
         };
 
@@ -88,7 +88,7 @@
         function _refreshPageData() {
           $http({
             method: 'GET',
-            url: '/api/fruits'
+            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits'
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
           }, function errorCallback(response) {
