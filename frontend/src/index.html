@@ -23,22 +23,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.16/angular-resource.js"></script>
     <script type="text/javascript">
-       var cors_api_url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/';
-    function doCORSRequest(options, printResult) {
-      var x = new XMLHttpRequest();
-      x.open(options.method, cors_api_url + options.url);
-      x.onload = x.onerror = function() {
-        printResult(
-          options.method + ' ' + options.url + '\n' +
-          x.status + ' ' + x.statusText + '\n\n' +
-          (x.responseText || '')
-        );
-      };
-      if (/^POST/i.test(options.method)) {
-        x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      }
-      x.send(options.data);
-      }
       
       var app = angular.module("FruitManagement", []);
       
@@ -67,8 +51,6 @@
 
         //HTTP POST/PUT methods for add/edit fruits
         $scope.update = function () {
-          var cors = new EnableCorsAttribute("*", "*", "*");
-          config.EnableCors(cors);
           var method = "";
           var url = "";
           var data = {};
@@ -91,13 +73,7 @@
           $http({
             method: method,
             url: url,
-            data: angular.toJson(data),
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Headers': 'Content-Type',
-              'Access-Control-Allow-Methods': ['GET', 'POST', 'OPTIONS']
-            }
+            data: angular.toJson(data)
           }).then(_success, _error);
         };
 
@@ -105,11 +81,6 @@
         $scope.remove = function (fruit) {
           $http({
             method: 'DELETE',
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Headers': 'Content-Type',
-              'Access-Control-Allow-Methods': ['GET', 'POST', 'OPTIONS']
-            },
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
           }).then(_success, _error);
           console.log("DELETE " + response.statusText);
@@ -129,12 +100,6 @@
           $http({
             method: 'GET',
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits',
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Headers': 'Content-Type',
-              'Access-Control-Allow-Methods': ['GET', 'POST', 'OPTIONS']
-            }
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
           }, function errorCallback(response) {
@@ -184,11 +149,6 @@
     <div class="row">
         <div class="col-2">Name</div>
     <div class="col-2">Stock</div>
-    </div>
-    <div class="row">
-        <div class="col-2">apple</div>
-        <div class="col-2">2</div>
-        <div class="col-8"><a class="btn">Edit</a> <a class="btn">Remove</a></div>
     </div>
     <div class="row" ng-repeat="fruit in fruits">
         <div class="col-2">{{ fruit.name }}</div>
