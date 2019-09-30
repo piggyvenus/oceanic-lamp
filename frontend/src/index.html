@@ -53,11 +53,6 @@
           var method = "";
           var url = "";
           var data = {};
-          var headers = {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
-              };
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
             method = "POST";
@@ -106,8 +101,13 @@
         function _refreshPageData() {
           $http({
             method: 'GET',
-            headers: headers,
-            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits'
+            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits',
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'Content-Type',
+              'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+            }
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
           }, function errorCallback(response) {
