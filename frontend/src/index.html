@@ -23,6 +23,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript">
       var app = angular.module("FruitManagement", []);
+      
       app.config(function($httpProvider) {
       //Enable cross domain calls
       $httpProvider.defaults.useXDomain = true;
@@ -56,14 +57,14 @@
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
             method = "POST";
-            url = 'http://oceanic-lamp-welcome.oceanic-lamp.svc.cluster.local:8080/backend/api/fruits';
+            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits';
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
             console.log("POST "+response.statusText);
           } else {
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
-            url = 'http://oceanic-lamp-welcome.oceanic-lamp.svc.cluster.local:8080/backend/api/fruits/' + $scope.form.id;
+            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
             console.log("PUT "+response.statusText);
@@ -75,7 +76,9 @@
             data: angular.toJson(data),
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*'
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'Content-Type',
+              'Access-Control-Allow-Methods': ['GET', 'POST', 'OPTIONS']
             }
           }).then(_success, _error);
         };
@@ -85,9 +88,11 @@
           $http({
             method: 'DELETE',
             headers: {
-              'Access-Control-Allow-Origin': '*'
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'Content-Type',
+              'Access-Control-Allow-Methods': ['GET', 'POST', 'OPTIONS']
             },
-            url: 'http://oceanic-lamp-welcome.oceanic-lamp.svc.cluster.local:8080/backend/api/fruits/' + fruit.id
+            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
           }).then(_success, _error);
           console.log("DELETE " + response.statusText);
         };
@@ -110,7 +115,7 @@
               'Content-Type': 'application/json',
               'Access-Control-Allow-Origin': '*',
               'Access-Control-Allow-Headers': 'Content-Type',
-              'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+              'Access-Control-Allow-Methods': ['GET', 'POST', 'OPTIONS']
             }
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
