@@ -24,12 +24,12 @@
     <script type="text/javascript">
       var app = angular.module("FruitManagement", []);
 
-      app.all('/*', function (request, response, next) {
-        response.header("Access-Control-Allow-Origin", "*");
-        response.header("Access-Control-Allow-Headers", "X-Requested-With");
-        response.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
-        next();
-      });
+//      app.all('/backend', function (request, response, next) {
+//        response.header("Access-Control-Allow-Origin", "*");
+//        response.header("Access-Control-Allow-Headers", "X-Requested-With");
+//        response.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
+//        next();
+//      });
 
       //Controller Part
       app.controller("FruitManagementController", function ($scope, $http) {
@@ -57,7 +57,7 @@
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
-              }
+              };
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
             method = "POST";
@@ -106,6 +106,7 @@
         function _refreshPageData() {
           $http({
             method: 'GET',
+            headers: headers,
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits'
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
