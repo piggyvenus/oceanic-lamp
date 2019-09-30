@@ -99,7 +99,7 @@
         //HTTP GET- get all fruits collection
         function _refreshPageData() {
           $http({
-            method: 'GET',
+            method: 'JSONP',
             headers: {'Access-Control-Allow-Origin': '*','Access-Control-Allow-Methods': 'GET, POST, OPTIONS'},
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits'
           }).then(function successCallback(response) {
