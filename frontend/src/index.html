@@ -24,22 +24,7 @@
     <script type="text/javascript">
       var app = angular.module("FruitManagement", []);
 
-      app.controller("myController", function ($scope, $http) {
       
-          var onSuccess = function (data, status, headers, config) {
-              $scope.data = data;
-          };
-
-          var onError = function (data, status, headers, config) {
-              $scope.error = status;
-          }
-      
-          var promise = $http.get("http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits");
-              
-          promise.success(onSuccess);
-          promise.error(onError);
-        
-      });
       //Controller Part
       app.controller("FruitManagementController", function ($scope, $http) {
 
@@ -63,9 +48,9 @@
           var url = "";
           var data = {};
           var headers = {
-            'Access-Control-Allow-Origin': true,
-            'Content-Type': 'application/json; charset=utf-8',
-            "X-Requested-With": "XMLHttpRequest"
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
               }
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
@@ -143,13 +128,9 @@
       });
     </script>
 </head>
-<body ng-app="FruitManagement">
-    <div ng-controller="myController">
-        <div class="row" ng-repeat="fruit in data">
-    Response Data: {{fruit}} <br />
-   Error: {{error}}
-</div>
-<div class="container" ng-controller="FruitManagementController">
+<body ng-app="FruitManagement" ng-controller="FruitManagementController">
+    
+<div class="container">
     <h1>Fruit Stock Management</h1>
     <p>
         This application demonstrates how a Spring Boot application implements a CRUD endpoint to manage <em>fruits</em>.
