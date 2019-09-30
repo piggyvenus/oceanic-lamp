@@ -54,6 +54,7 @@
           var method = "";
           var url = "";
           var data = {};
+          
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
             method = "POST";
@@ -73,7 +74,10 @@
           $http({
             method: method,
             url: url,
-            data: angular.toJson(data)
+            data: angular.toJson(data),
+            headers: {
+              'Content-Type': 'application/json'
+            }
           }).then(_success, _error);
         };
 
