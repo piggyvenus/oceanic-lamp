@@ -100,7 +100,7 @@
         function _refreshPageData() {
           $http({
             method: 'GET',
-            headers: headers,
+            headers: {'Access-Control-Allow-Origin': '*','Access-Control-Allow-Methods': 'GET, POST, OPTIONS'},
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits'
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
