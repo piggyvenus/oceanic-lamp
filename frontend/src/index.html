@@ -181,25 +181,8 @@
       });
     </script>
 </head>
-<body>
-    <div id="top">
-        CORS Anywhere demo &bull; <a href="https://github.com/Rob--W/cors-anywhere/">Github</a> &bull; <a href="http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com">Live server</a>.
-        <label>
-          Url to be fetched (example: <a href="//robwu.nl/dump.php">robwu.nl/dump.php</a>)
-          <input type="url" id="url" value="">
-        </label>
-        <label>
-          If using POST, enter the data:
-          <input type="text" id="data">
-        </label>
-        <label>
-          <button id="get">GET</button><button id="post">POST</button>
-        </label>
-      </div>
-      <div id="bottom">
-        <textarea id="output"></textarea>
-      </div>
-<div class="container" ng-app="FruitManagement" ng-controller="FruitManagementController">
+<body ng-app="FruitManagement" ng-controller="FruitManagementController">
+<div class="container">
     <h1>Fruit Stock Management</h1>
     <p>
         This application demonstrates how a Spring Boot application implements a CRUD endpoint to manage <em>fruits</em>.
