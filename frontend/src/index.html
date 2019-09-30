@@ -23,11 +23,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript">
       var app = angular.module("FruitManagement", []);
-      var console = angular.module('logExample', []);
-
-      console.controller('LogController', ['$scope', '$log', function($scope, $log) {
-        $scope.$log = $log;
-      }]);
+      
       //Controller Part
       app.controller("FruitManagementController", function ($scope, $http) {
 
@@ -51,17 +47,17 @@
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
             method = "POST";
-            url = '/backend/api/fruits';
+            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits';
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
-            $log.log("POST "+response.statusText);
+            console.log("POST "+response.statusText);
           } else {
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
-            url = '/backend/api/fruits/' + $scope.form.id;
+            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
-            $log.log("PUT "+response.statusText);
+            console.log("PUT "+response.statusText);
           }
 
           $http({
@@ -78,9 +74,9 @@
         $scope.remove = function (fruit) {
           $http({
             method: 'DELETE',
-            url: '/backend/api/fruits/' + fruit.id
+            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
           }).then(_success, _error);
-          $log.log("DELETE " + response.statusText);
+          console.log("DELETE " + response.statusText);
         };
 
         //In case of edit fruits, populate form with fruit data
@@ -88,26 +84,19 @@
           $scope.form.name = fruit.name;
           $scope.form.stock = parseInt(fruit.stock);
           $scope.form.id = fruit.id;
-          $log.log(response.statusText);
+          console.log(response.statusText);
         };
 
           /* Private Methods */
         //HTTP GET- get all fruits collection
         function _refreshPageData() {
-        //  $http({
-        //    method: 'GET',
-        //    url: '/backend/api/fruits'
-        //  }).then(function successCallback(response) {
-        //    $scope.fruits = response.data;
-        //    $log.log("GET " + response.statusText);
-        //  }, function errorCallback(response) {
-        //    $log.log("GET " + response.statusText);
-        //  });
-          $http.get("http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits"
-            ).then(function successCallback(response) {
-            $log.error("GET");
-            $log.error(response.statusText);
+          $http({
+            method: 'GET',
+            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits'
+          }).then(function successCallback(response) {
             $scope.fruits = response.data;
+          }, function errorCallback(response) {
+            console.log(response.statusText);
           });
 
         }
