@@ -30,7 +30,7 @@
         response.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
         next();
       });
-      
+
       //Controller Part
       app.controller("FruitManagementController", function ($scope, $http) {
 
@@ -105,8 +105,7 @@
         //HTTP GET- get all fruits collection
         function _refreshPageData() {
           $http({
-            method: 'JSONP',
-            headers: {'Access-Control-Allow-Origin': '*','Access-Control-Allow-Methods': 'GET, POST, OPTIONS'},
+            method: 'GET',
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits'
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
