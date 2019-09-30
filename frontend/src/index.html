@@ -24,12 +24,12 @@
     <script type="text/javascript">
       var app = angular.module("FruitManagement", []);
 
-//      app.all('/backend', function (request, response, next) {
-//        response.header("Access-Control-Allow-Origin", "*");
-//        response.header("Access-Control-Allow-Headers", "X-Requested-With");
-//        response.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
-//        next();
-//      });
+      app.all('/backend/*', function (request, response, next) {
+        response.header("Access-Control-Allow-Origin", "*");
+        response.header("Access-Control-Allow-Headers", "X-Requested-With");
+        response.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
+        next();
+      });
 
       //Controller Part
       app.controller("FruitManagementController", function ($scope, $http) {
@@ -74,7 +74,8 @@
             url: url,
             data: angular.toJson(data),
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*'
             }
           }).then(_success, _error);
         };
@@ -83,6 +84,9 @@
         $scope.remove = function (fruit) {
           $http({
             method: 'DELETE',
+            headers: {
+              'Access-Control-Allow-Origin': '*'
+            },
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
           }).then(_success, _error);
           console.log("DELETE " + response.statusText);
