@@ -24,12 +24,12 @@
     <script type="text/javascript">
       var app = angular.module("FruitManagement", []);
 
-      app.all('/backend/*', function (request, response, next) {
+/*      app.all('/backend/*', function (request, response, next) {
         response.header("Access-Control-Allow-Origin", "*");
         response.header("Access-Control-Allow-Headers", "X-Requested-With");
         response.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
         next();
-      });
+      }); */
 
       //Controller Part
       app.controller("FruitManagementController", function ($scope, $http) {
@@ -56,14 +56,14 @@
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
             method = "POST";
-            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits';
+            url = 'http://oceanic-lamp-welcome:8080/backend/api/fruits';
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
             console.log("POST "+response.statusText);
           } else {
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
-            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + $scope.form.id;
+            url = 'http://oceanic-lamp-welcome:8080/backend/api/fruits/' + $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
             console.log("PUT "+response.statusText);
@@ -87,7 +87,7 @@
             headers: {
               'Access-Control-Allow-Origin': '*'
             },
-            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
+            url: 'http://oceanic-lamp-welcome:8080/backend/api/fruits/' + fruit.id
           }).then(_success, _error);
           console.log("DELETE " + response.statusText);
         };
@@ -105,7 +105,7 @@
         function _refreshPageData() {
           $http({
             method: 'GET',
-            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits',
+            url: 'http://oceanic-lamp-welcome:8080/backend/api/fruits',
             headers: {
               'Content-Type': 'application/json',
               'Access-Control-Allow-Origin': '*',
