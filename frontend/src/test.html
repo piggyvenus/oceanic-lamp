@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+</head>
+<body ng-app ="myApp">
+<h1>AngularJS $http Demo: </h1>
+    <div>
+        <div ng-controller="myController">
+                <div class="row" ng-repeat="fruit in data">
+            Response Data: {{fruit}} <br />
+           Error: {{error}}
+        </div>
+    </div>
+    <script>
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller("myController", function ($scope, $http) {
+       
+            var onSuccess = function (data, status, headers, config) {
+                $scope.data = data;
+            };
+
+            var onError = function (data, status, headers, config) {
+                $scope.error = status;
+            }
+        
+            var promise = $http.get("http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits");
+                
+            promise.success(onSuccess);
+            promise.error(onError);
+         
+        });
+    </script>
+</body>
+</html>
