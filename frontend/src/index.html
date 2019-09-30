@@ -23,8 +23,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.16/angular-resource.js"></script>
     <script type="text/javascript">
-       var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
-  function doCORSRequest(options, printResult) {
+       var cors_api_url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/';
+    function doCORSRequest(options, printResult) {
       var x = new XMLHttpRequest();
       x.open(options.method, cors_api_url + options.url);
       x.onload = x.onerror = function() {
@@ -58,7 +58,7 @@
       })();
       if (typeof console === 'object') {
         console.log('// To test a local CORS Anywhere server, set cors_api_url. For example:');
-        console.log('cors_api_url = "http://localhost:8080/"');
+        console.log('cors_api_url = "http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/"');
       }
       var app = angular.module("FruitManagement", []);
       
