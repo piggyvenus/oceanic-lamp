@@ -105,6 +105,8 @@
         //  });
           $http.get("http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits"
             ).then(function successCallback(response) {
+            $log.error("GET");
+            $log.error(response.statusText);
             $scope.fruits = response.data;
           });
 
