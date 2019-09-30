@@ -24,6 +24,12 @@
     <script type="text/javascript">
       var app = angular.module("FruitManagement", []);
 
+      app.all('/*', function (request, response, next) {
+        response.header("Access-Control-Allow-Origin", "*");
+        response.header("Access-Control-Allow-Headers", "X-Requested-With");
+        response.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
+        next();
+      });
       
       //Controller Part
       app.controller("FruitManagementController", function ($scope, $http) {
