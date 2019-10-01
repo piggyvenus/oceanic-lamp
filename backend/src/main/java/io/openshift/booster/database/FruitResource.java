@@ -60,8 +60,8 @@ public class FruitResource {
         if (entity == null) {
             return error(404, "Fruit with id of " + id + " does not exist.");
         }
-
-        return Response.ok(entity).status(200).build();
+       // Response.ok(entity).header
+       return Response.ok(entity).status(200).build();
     }
 
 
@@ -91,7 +91,9 @@ public class FruitResource {
         } catch (Exception e) {
             return error(500, e.getMessage());
         }
-        return Response.ok(fruit).status(201).build();
+        
+        //return Response.ok(fruit).status(201).build();
+        return Response.status(201).header("Access-Control-Allow-Headers","Content-Type").build();
     }
 
     @PUT
@@ -100,6 +102,7 @@ public class FruitResource {
     @Produces("application/json")
     @Transactional
     public Response update(@PathParam("id") Integer id, Fruit fruit) {
+        
         if (fruit == null) {
             return error(415, "Invalid payload!");
         }
@@ -123,7 +126,8 @@ public class FruitResource {
             entity.setStock(fruit.getStock());
             em.merge(entity);
 
-            return Response.ok(entity).status(200).build();
+            //return Response.ok(entity).status(200).build();
+            return Response.status(200).entity(entity).header("Access-Control-Allow-Headers","Content-Type").build();
         } catch (Exception e) {
             return error(500, e.getMessage());
         }
