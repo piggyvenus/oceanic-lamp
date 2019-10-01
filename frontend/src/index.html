@@ -58,7 +58,7 @@
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
             method = "POST";
-            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits';
+            url = 'https://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits';
             data.id = 100;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
@@ -66,7 +66,7 @@
           } else {
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
-            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + $scope.form.id;
+            url = 'https://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + $scope.form.id;
             //data.id = $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
@@ -86,9 +86,9 @@
         $scope.remove = function (fruit) {
           $http({
             method: 'DELETE',
-            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
+            url: 'https://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
           }).then( _success, _error );
-          console.log("DELETE " + response.statusText);
+          //console.log("DELETE " + response.statusText);
         };
 
         //In case of edit fruits, populate form with fruit data
@@ -104,7 +104,7 @@
         function _refreshPageData() {
           $http({
             method: 'GET',
-            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits',
+            url: 'https://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits',
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
           }, function errorCallback(response) {
