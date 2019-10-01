@@ -66,6 +66,7 @@
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
             url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + $scope.form.id;
+            data.id = $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
             console.log("PUT "+response.statusText);
@@ -78,7 +79,7 @@
             headers: {
               'Content-Type': 'application/json'
             }
-          }).then(_success, _error);
+          }).then( _success, _error );
         };
 
         //HTTP DELETE- delete fruit by id
@@ -86,7 +87,7 @@
           $http({
             method: 'DELETE',
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
-          }).then(_success, _error);
+          }).then( _success, _error );
           console.log("DELETE " + response.statusText);
         };
 
@@ -145,7 +146,7 @@
             <div class="col-6"><input type="text" placeholder="Name" ng-model="form.name" size="60"/></div>
             <div class="col-6"><input type="number" placeholder="Stock" ng-model="form.stock" size="60" min="0"/></div>
         </div>
-        <input type="submit" value="Save"/>
+        <input type="submit" value="Sumit"/>
     </form>
 
     <h3>Fruit List</h3>
