@@ -75,10 +75,8 @@
           $http({
             method: method,
             url: url,
-            data: angular.toJson($scope.form),
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
+            data: $scope.form,
+            headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
           }).then( _success, _error );
         };
 
