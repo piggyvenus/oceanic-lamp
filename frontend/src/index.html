@@ -59,23 +59,22 @@
             //Id is absent so add fruits - POST operation
             method = "POST";
             url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits';
-            //data.name = $scope.form.name;
-            //data.stock = $scope.form.stock;
-            //console.log("POST "+response.statusText);
+            data.name = $scope.form.name;
+            data.stock = $scope.form.stock;
+            console.log(url);
           } else {
             //If Id is present, it's edit operation - PUT operation
             method = "PUT";
             url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + $scope.form.id;
-            //data.id = $scope.form.id;
-            //data.name = $scope.form.name;
-            //data.stock = $scope.form.stock;
-            //console.log("PUT "+response.statusText);
+            data.name = $scope.form.name;
+            data.stock = $scope.form.stock;
+            console.log(url);
           }
 
           $http({
             method: method,
             url: url,
-            data: angular.toJson($scope.form),
+            data: angular.toJson(data),
             headers : {'Content-Type':'application/json'}
           }).then( _success, _error );
            
