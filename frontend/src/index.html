@@ -54,7 +54,6 @@
           var method = "";
           var url = "";
           var data = {};
-          var response = "";
           
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
@@ -76,9 +75,20 @@
           $http({
             method: method,
             url: url,
-            data: $scope.form,
-            headers : {'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'}
-          }).then( _success, _error );
+            data: angular.toJson($scope.form),
+            headers : {'Content-Type':'application/json'}
+          }).then(function (response) {
+            if (response.data)
+            $scope.msg = "Post Data Submitted Successfully!";
+            }, function (response) {
+            $scope.msg = "Service not Exists";
+            $scope.statusval = response.status;
+            $scope.statustext = response.statusText;
+            $scope.headers = response.headers();
+            });
+
+//.then( _success, _error );
+           
         };
 
         //HTTP DELETE- delete fruit by id
