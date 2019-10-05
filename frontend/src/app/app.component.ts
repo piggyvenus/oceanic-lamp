@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EnvService } from '../env.service';
+import { EnvService } from './env.service';
 
 @Component({
   selector: 'app-root',
