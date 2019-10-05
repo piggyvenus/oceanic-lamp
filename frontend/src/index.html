@@ -19,6 +19,7 @@
             font-family: 'Open Sans',serif;
         }
     </style>
+    <script src="env.js"></script>
     <!-- Load AngularJS -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.16/angular-resource.js"></script>
@@ -87,7 +88,7 @@
             method: 'DELETE',
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
           }).then( _success, _error );
-          console.log(url);
+          //console.log(env.apiUrl);
         };
 
         //In case of edit fruits, populate form with fruit data
@@ -100,6 +101,7 @@
           /* Private Methods */
         //HTTP GET- get all fruits collection
         function _refreshPageData() {
+          console.log(env.apiUrl);
           $http({
             method: 'GET',
             url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits',
