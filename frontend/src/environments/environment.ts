@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  apiUrl: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits',
+  //apiUrl: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits',
   production: false
 };
 

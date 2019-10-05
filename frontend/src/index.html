@@ -57,18 +57,16 @@
           
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
-            console.log(environment.apiUrl);
             method = "POST";
-            url = '';
+            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits';
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
             console.log(url);
             
           } else {
             //If Id is present, it's edit operation - PUT operation
-            console.log(environment.apiUrl);
             method = "PUT";
-            url = '/' + $scope.form.id;
+            url = 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
             console.log(url);
@@ -87,9 +85,9 @@
         $scope.remove = function (fruit) {
           $http({
             method: 'DELETE',
-            url: '/' + fruit.id
+            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits/' + fruit.id
           }).then( _success, _error );
-          //console.log("DELETE " + response.statusText);
+          console.log(url);
         };
 
         //In case of edit fruits, populate form with fruit data
@@ -97,7 +95,6 @@
           $scope.form.name = fruit.name;
           $scope.form.stock = parseInt(fruit.stock);
           $scope.form.id = fruit.id;
-          //console.log(response.statusText);
         };
 
           /* Private Methods */
@@ -106,7 +103,7 @@
           console.log(environment.apiUrl);
           $http({
             method: 'GET',
-            url: '',
+            url: 'http://oceanic-lamp-welcome-oceanic-lamp.apps.cluster-6152.sandbox526.opentlc.com/backend/api/fruits',
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
           }, function errorCallback(response) {
