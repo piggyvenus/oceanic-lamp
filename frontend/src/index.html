@@ -57,15 +57,18 @@
           
           if ($scope.form.id == -1) {
             //Id is absent so add fruits - POST operation
+            console.log(environment.apiUrl);
             method = "POST";
-            url = 'environment.apiUrl';
+            url = '';
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
             console.log(url);
+            
           } else {
             //If Id is present, it's edit operation - PUT operation
+            console.log(environment.apiUrl);
             method = "PUT";
-            url = 'environment.apiUrl/' + $scope.form.id;
+            url = '/' + $scope.form.id;
             data.name = $scope.form.name;
             data.stock = $scope.form.stock;
             console.log(url);
@@ -84,7 +87,7 @@
         $scope.remove = function (fruit) {
           $http({
             method: 'DELETE',
-            url: 'environment.apiUrl/' + fruit.id
+            url: '/' + fruit.id
           }).then( _success, _error );
           //console.log("DELETE " + response.statusText);
         };
@@ -100,9 +103,10 @@
           /* Private Methods */
         //HTTP GET- get all fruits collection
         function _refreshPageData() {
+          console.log(environment.apiUrl);
           $http({
             method: 'GET',
-            url: 'environment.apiUrl',
+            url: '',
           }).then(function successCallback(response) {
             $scope.fruits = response.data;
           }, function errorCallback(response) {
