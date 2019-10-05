@@ -10,7 +10,7 @@ export class AppComponent {
   constructor(
     private env: EnvService
   ) {
-    if(env.debugEnabled) {
+    if(env.enableDebug) {
       console.log('Debug mode enabled!');
     }
   }
