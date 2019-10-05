@@ -67,7 +67,6 @@ public class FruitResource {
 
     @POST
     @Consumes("application/json")
-    @Produces("application/json")
     @Transactional
     public Response create(Fruit fruit) {
         if (fruit == null) {
@@ -92,8 +91,8 @@ public class FruitResource {
             return error(500, e.getMessage());
         }
         
-        //return Response.ok(fruit).status(201).build();
-        return Response.status(201).header("Access-Control-Allow-Headers","Content-Type").build();
+        return Response.ok(fruit).status(201).build();
+        //return Response.status(201).header("Access-Control-Allow-Headers","Content-Type").build();
     }
 
     @PUT
@@ -126,8 +125,8 @@ public class FruitResource {
             entity.setStock(fruit.getStock());
             em.merge(entity);
 
-            //return Response.ok(entity).status(200).build();
-            return Response.status(200).entity(entity).header("Access-Control-Allow-Headers","Content-Type").build();
+            return Response.ok(entity).status(200).build();
+            //return Response.status(200).entity(entity).header("Access-Control-Allow-Headers","Content-Type").build();
         } catch (Exception e) {
             return error(500, e.getMessage());
         }
