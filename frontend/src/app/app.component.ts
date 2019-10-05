@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { EnvService } from './env.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +6,4 @@ import { EnvService } from './env.service';
 })
 export class AppComponent {
   title = 'oceanic-lamp';
-  constructor(
-    private env: EnvService
-  ) {
-    if(env.enableDebug) {
-      console.log('Debug mode enabled!');
-    }
-  }
 }
